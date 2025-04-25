@@ -4475,7 +4475,7 @@ def list_machine(args, id):
 
     json_blob = {'machine': id, 'price_gpu': args.price_gpu,
                         'price_disk': args.price_disk, 'price_inetu': args.price_inetu, 'price_inetd': args.price_inetd, 'price_min_bid': args.price_min_bid, 
-                        'min_chunk': args.min_chunk, 'end_date': string_to_unix_epoch(args.end_date), 'credit_discount_max': args.discount_rate}
+                        'min_chunk': args.min_chunk, 'end_date': string_to_unix_epoch(args.end_date), 'credit_discount_max': args.discount_rate, 'allowed_customer_ids': args.allowed_customer_ids}
     if (args.explain):
         print("request json: ")
         print(json_blob)
@@ -4520,6 +4520,7 @@ def list_machine(args, id):
     argument("-r", "--discount_rate", help="Max long term prepay discount rate fraction, default: 0.4 ", type=float),
     argument("-m", "--min_chunk", help="minimum amount of gpus", type=int),
     argument("-e", "--end_date", help="contract offer expiration - the available until date (optional, in unix float timestamp or MM/DD/YYYY format)", type=str),
+    argument("-ac", "--allowed_customer_ids", help="comma separated list of customer ids to allow to rent this machine. If not set, all customers are allowed.", type=str),
     usage="vastai list machine ID [options]",
     help="[Host] list a machine for rent",
     epilog=deindent("""
